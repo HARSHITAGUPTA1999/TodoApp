@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Update
+{% endblock title %}
+
+{% block content %}
+
+<body class="text-center">
+    <div class="container">
+
+        <br>
+        <h3 class="display-4.5 font-weight-bolder text-center "><mark> EDIT TASKS</mark></h3>
+
+        <form method="POST" action="{{ url_for('update_page' ,task_id=updated.task_id) }}" class="form-register"
+            style="color:rgb(35, 36, 25)">
+            {{ form.hidden_tag() }}
+
+            <br>
+
+            <h5>{{ form.edit_item.label(class="col-sm-2 col-form-label") }}</h5>
+            {{ form.edit_item(class="form-control" , value=updated.task_title , placeholder="Edit Task") }}
+
+            <br>
+
+            <h5>{{ form.edit_desc.label(class="col-sm-2 col-form-label") }}</h5>
+            {{ form.edit_desc(class="form-control", value=updated.task_desc, placeholder="Edit Description" ) }}
+
+            <br>
+
+            {{ form.submit(class="btn btn-outline-dark")}}
+
+        </form>
+    </div>
+</body>
+{% endblock content %}

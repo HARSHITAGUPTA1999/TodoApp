@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Register Page
+{% endblock title %}
+
+{% block content %}
+
+<body class="text-center">
+    <div class="container">
+        <form method="POST" class="form-register" style="color:rgb(35, 36, 25)">
+            {{ form.hidden_tag() }}
+            <br>
+            <img class="mb-4" src="https://pic.onlinewebfonts.com/svg/img_311846.png" alt="" width="100" height="100">
+
+            <h1 class="display-5 font-weight-bolder">
+                Please Create your Account
+            </h1>
+
+            <br>
+
+            <h5>{{ form.username.label() }}</h5>
+            {{ form.username(class="form-control", placeholder="UserName") }}
+
+            <ul>
+                {% for errors in form.username.errors %}
+                <li class=text-left style="color:red;">{{errors}}</li>
+                {% endfor %}
+            </ul>
+
+            <h5>{{ form.email_address.label() }}</h5>
+            {{ form.email_address(class="form-control", placeholder="Email Address") }}
+
+            <ul>
+                {% for errors in form.email_address.errors %}
+                <li class=text-left style="color:red;">{{errors}}</li>
+                {% endfor %}
+            </ul>
+
+            <h5>{{ form.password1.label() }}</h5>
+            {{ form.password1(class="form-control", placeholder="Password") }}
+
+            <ul>
+                {% for errors in form.password1.errors %}
+                <li class=text-left style="color:red;">{{errors}}</li>
+                {% endfor %}
+            </ul>
+
+
+
+            {{ form.submit(class="btn btn-outline-dark ")}}
+
+        </form>
+    </div>
+</body>
+{% endblock content %}

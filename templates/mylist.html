@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %}
+MyList
+{% endblock title %}
+
+{% block content %}
+
+
+
+<div class="container">
+    <br>
+    <h1 class="display-4  font-weight-bolder page-header text-center ">Welcome, {{ current_user.username }}</h1>
+</div>
+
+
+
+<div class="container">
+
+    <br>
+    <h3 class="display-4.5 font-weight-bolder text-center ">ADD A NEW TASK</h3>
+
+    <form method="POST" class="form-register" style="color:rgb(35, 36, 25) text-center">
+        {{ form.hidden_tag() }}
+
+        <br>
+
+        <h5>{{ form.add_item.label() }}</h5>
+        {{ form.add_item(class="form-control", placeholder="Add task") }}
+
+        <br>
+
+        <h5>{{ form.add_desc.label() }}</h5>
+        {{ form.add_desc(class="form-control", placeholder="Description") }}
+
+        <br>
+
+        {{ form.submit(class="btn btn-outline-dark")}}
+
+
+
+    </form>
+
+    <br>
+</div>
+
+
+
+<!-- inserting a table-->
+<div class="container" my-3>
+    <h3 class="display-4.5 font-weight-bolder text-center ">ALL TASKS</h3>
+    <table class="table table-hover ">
+        <thead class="thead-dark">
+            <tr>
+                <!-- Your Columns HERE -->
+                <th scope="col">Sno</th>
+                <th scope="col">Task</th>
+                <th scope="col">Description</th>
+                <th scope="col">Date Created</th>
+                <th scope="col">Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Your rows inside the table HERE: -->
+
+            {% for i in item %}
+            <tr>
+                <th scope="row">{{loop.index}}</th>
+                <<!--<td>{{i.task_id}}</td>-->
+                    <td>{{i.task_title}}</td>
+                    <td>{{i.task_desc}}</td>
+                    <td>{{i.date_created}}</td>
+                    <td>
+
+                        <a href="{{ url_for('update_page' , task_id=i.task_id) }}" type="button"
+                            class="btn btn-warning  mx-1">Update</button>
+                            <a href="/delete/{{i.task_id}}" type="button" class="btn btn-danger  mx-1">Delete</button>
+
+
+
+                    </td>
+
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+</div>
+{% endblock content %}
